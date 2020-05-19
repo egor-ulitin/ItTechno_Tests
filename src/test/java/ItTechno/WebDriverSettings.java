@@ -26,9 +26,9 @@ public class WebDriverSettings {
     public static WebDriverWait wait;
     @BeforeMethod
     public void beforeMethod() {
-        chromeDriver = new ChromeDriver();
-        System.setProperty("webdriver.chromedriver.driver", "C:\\Users\\Егор\\IdeaProjects\\It-techno.by_Tests\\chromedriver.exe");
-        webDriver = new EventFiringWebDriver(chromeDriver);
+        firefoxDriver = new FirefoxDriver();
+        System.setProperty("webdriver.gecko.driver", "C:\\Users\\Егор\\IdeaProjects\\It-techno.by_Tests\\geckodriver.exe");
+        webDriver = new EventFiringWebDriver(firefoxDriver);
         listener = new WebDriverListener();
         webDriver.register(listener);
         webDriver.manage().window().maximize();

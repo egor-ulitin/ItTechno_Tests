@@ -33,7 +33,7 @@ public class CatalogTests extends WebDriverSettings {
     }
     //проверка открытия каталога
     @Test(dataProvider = "Category and subcategory")
-    private static void openCatalogTest(String category, String subcategory) throws TimeoutException
+    private static void openCatalogTest(String category, String subcategory) throws Exception
     {
         MainPage mainPage = new MainPage(webDriver);
         mainPage.openCite();

@@ -14,7 +14,7 @@ public class CartTests extends WebDriverSettings {
 
     //Тест, проверяющий добавление в корзину через каталог
     @Test
-    public void addToCartViaCatalogTest() {
+    public void addToCartViaCatalogTest() throws Exception {
         MainPage mainPage = new MainPage(webDriver);
         mainPage.openCite();
         CatalogPage catalogPage = mainPage.openCategoryOfProductInCatalog("AV", "AV ресиверы");
@@ -24,7 +24,7 @@ public class CartTests extends WebDriverSettings {
     }
     //Тест, проверяющий добавление в корзину через подробное описание товара
     @Test
-    public void addToCartViaProductDetailedDescriptionTest() {
+    public void addToCartViaProductDetailedDescriptionTest() throws Exception {
         MainPage mainPage = new MainPage(webDriver);
         mainPage.openCite();
         CatalogPage catalogPage = mainPage.openCategoryOfProductInCatalog("AV", "AV ресиверы");
@@ -36,7 +36,7 @@ public class CartTests extends WebDriverSettings {
 
     //Тест, проверяющий функцию увеличение количества заказываемого товара
     @Test
-    public void increanseNumberProductTest() {
+    public void increanseNumberProductTest() throws Exception {
         MainPage mainPage = new MainPage(webDriver);
         mainPage.openCite();
         CatalogPage catalogPage = mainPage.openCategoryOfProductInCatalog("AV", "AV ресиверы");
@@ -48,7 +48,7 @@ public class CartTests extends WebDriverSettings {
 
     //Тест, проверяющий функцию уменьшения количества заказываемого товара
     @Test
-    public void reduceNumberProductTest() {
+    public void reduceNumberProductTest() throws Exception {
         MainPage mainPage = new MainPage(webDriver);
         mainPage.openCite();
         CatalogPage catalogPage = mainPage.openCategoryOfProductInCatalog("AV", "AV ресиверы");
@@ -63,7 +63,7 @@ public class CartTests extends WebDriverSettings {
 
     //Тест, проверяющий корректность изображения корзины
     @Test
-    public void correctlyDisplayedTest() throws IOException {
+    public void correctlyDisplayedTest() throws Exception {
         MainPage mainPage = new MainPage(webDriver);
         mainPage.openCite();
         CatalogPage catalogPage =mainPage.openCategoryOfProductInCatalog("AV", "AV ресиверы");

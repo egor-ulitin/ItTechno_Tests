@@ -77,19 +77,29 @@ public class MainPage {
     }
 
     @Step("Выбор другого города через поиск")
-    public void changeCityThroughSearchField(String cityName)
-    {
+    public void changeCityThroughSearchField(String cityName) throws Exception {
         cityChangeButton.click();
-        wait.until(ExpectedConditions.visibilityOf(searchCityField));
+        try {
+            wait.until(ExpectedConditions.visibilityOf(searchCityField));
+        }
+        catch (Exception io)
+        {
+            throw new Exception("Окно выбора города не доступно");
+        }
         searchCityField.sendKeys(cityName);
         searchCityField.sendKeys(Keys.ENTER);
     }
 
     @Step("Выбор другого города города через список городов в левой части окна")
-    public void changeCityThroughListCities(String cityName)
-    {
+    public void changeCityThroughListCities(String cityName) throws Exception {
         cityChangeButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(leftListCitiesAndDistrict.get(0)));
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(leftListCitiesAndDistrict.get(0)));
+        }
+        catch (Exception io)
+        {
+            throw new Exception("Окно выбора города не доступно");
+        }
         for (WebElement city: leftListCitiesAndDistrict)
         {
             if(cityName.equals(city.getText()))
@@ -100,11 +110,15 @@ public class MainPage {
     }
 
     @Step("Выбор другого города города через список самых популярных городов")
-    public MainPage changeCityThroughMainListCities(String cityName)
-    {
+    public MainPage changeCityThroughMainListCities(String cityName) throws Exception {
         cityChangeButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(mainListCities.get(mainListCities.size() - 1)));
-
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(mainListCities.get(mainListCities.size() - 1)));
+        }
+        catch (Exception io)
+        {
+            throw new Exception("Окно выбора города не доступно");
+        }
         for (WebElement city: mainListCities)
         {
             if(cityName.equals(city.getText()))
@@ -118,22 +132,27 @@ public class MainPage {
 
 
     @Step("Переход к указанной категории")
-    public CatalogPage openCategoryOfProductInCatalog(String categoryName, String subcategoryName) {
+    public CatalogPage openCategoryOfProductInCatalog(String categoryName, String subcategoryName) throws Exception {
         openCatalogButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable((categoryInCatalogButtons.get(categoryInCatalogButtons.size() - 1))));
-        for (WebElement category : categoryInCatalogButtons) {
-            if (categoryName.equals(category.getText())) {
-                category.click();
-                wait.until(ExpectedConditions.visibilityOfAllElements(subcategoriesButton));
-                for (WebElement subcategory : subcategoriesButton) {
-                    if (subcategoryName.equals(subcategory.getText())) {
-                        subcategory.click();
-                        return new CatalogPage(webDriver);
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable((categoryInCatalogButtons.get(categoryInCatalogButtons.size() - 1))));
+        }
+        catch (Exception io)
+        {
+            throw new Exception("Каталог не был открыт");
+        }
+            for (WebElement category : categoryInCatalogButtons) {
+                if (categoryName.equals(category.getText())) {
+                    category.click();
+                    wait.until(ExpectedConditions.visibilityOfAllElements(subcategoriesButton));
+                    for (WebElement subcategory : subcategoriesButton) {
+                        if (subcategoryName.equals(subcategory.getText())) {
+                            subcategory.click();
+                            return new CatalogPage(webDriver);
+                        }
                     }
                 }
             }
-        }
-
         return new CatalogPage(webDriver);
     }
 

@@ -19,23 +19,23 @@ public class ChangeCityTest extends WebDriverSettings{
 
     //Проверка выбора города через список самых популярных горолов
     @Test(dataProvider = "citiesInMainList")
-    private static void changeCityThroughMainListCitiesTest(String city) {
+    private static void changeCityThroughMainListCitiesTest(String city) throws Exception {
         MainPage mainPage = new MainPage(webDriver);
         mainPage.openCite();
         mainPage = mainPage.changeCityThroughMainListCities(city);
         mainPage.isThisCitySelected(city);
     }
     //Проверка выбора города через поиск
-    @Test
-    private static void changeCityThroughSearchFieldTest() {
+    @Test(dataProvider = "citiesInLeftList")
+    private static void changeCityThroughSearchFieldTest(String city) throws Exception {
         MainPage mainPage = new MainPage(webDriver);
         mainPage.openCite();
-        mainPage.changeCityThroughSearchField("Екатеринбург");
-        mainPage.isThisCitySelected("Екатеринбург");
+        mainPage.changeCityThroughSearchField(city);
+        mainPage.isThisCitySelected(city);
     }
     //Проверка выбора города через прокручивающийся список
     @Test(dataProvider = "citiesInLeftList")
-    private static void changeCityThroughListCitiesTest(String city) {
+    private static void changeCityThroughListCitiesTest(String city) throws Exception {
         MainPage mainPage = new MainPage(webDriver);
         mainPage.openCite();
         mainPage.changeCityThroughListCities(city);
@@ -43,7 +43,7 @@ public class ChangeCityTest extends WebDriverSettings{
     }
     //Проверка корректности отображения экрана выбора города
     @Test
-    private static void correctCitySelectedDisplayedTest() {
+    private static void correctCitySelectedDisplayedTest() throws Exception {
         MainPage mainPage = new MainPage(webDriver);
         mainPage.openCite();
         mainPage.changeCityThroughListCities("Гродно");
